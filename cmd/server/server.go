@@ -52,9 +52,9 @@ func main() {
 
 		var body Body
 		if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
+			w.WriteHeader(http.StatusBadRequest)
 			w.Write([]byte(err.Error()))
 			log.Println(err)
-			w.WriteHeader(http.StatusBadRequest)
 
 			return
 		}
@@ -62,9 +62,9 @@ func main() {
 		meta, err := summarizer.GetMetadata(body.URL)
 
 		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(err.Error()))
 			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
 
 			return
 		}
@@ -72,9 +72,9 @@ func main() {
 		url, err := issue.Create(r.Context(), client, owner, repo, meta)
 
 		if err != nil {
+			w.WriteHeader(http.StatusInternalServerError)
 			w.Write([]byte(err.Error()))
 			log.Println(err)
-			w.WriteHeader(http.StatusInternalServerError)
 
 			return
 		}

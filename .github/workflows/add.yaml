@@ -1,0 +1,18 @@
+name: Add a new page
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: 'URL'
+        required: true
+
+jobs:
+  add:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/github-script@v6
+        with:
+          script: |
+            console.log(JSON.stringify(context.payload))

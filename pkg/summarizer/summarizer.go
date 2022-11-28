@@ -55,17 +55,15 @@ type MetaFinder struct {
 func (mf *MetaFinder) findTitle() {
 	ogTitle := mf.doc.Find(`meta[property="og:title"]`)
 
-	if ogTitle != nil && ogTitle.Text() != "" {
-		val, exists := ogTitle.Attr("content")
+	val, exists := ogTitle.Attr("content")
 
-		if exists {
-			mf.meta.Title = spaces.ReplaceAllString(val, " ")
+	if exists {
+		mf.meta.Title = spaces.ReplaceAllString(val, " ")
 
-			return
-		}
+		return
 	}
 
-	titleNode := mf.doc.Find("title")
+	titleNode := mf.doc.Find("head > title").First()
 
 	if titleNode == nil {
 		return
@@ -76,10 +74,6 @@ func (mf *MetaFinder) findTitle() {
 
 func (mf *MetaFinder) findSiteName() {
 	ogSiteName := mf.doc.Find(`meta[property="og:site_name"]`)
-
-	if ogSiteName == nil {
-		return
-	}
 
 	val, exists := ogSiteName.Attr("content")
 
@@ -93,10 +87,6 @@ func (mf *MetaFinder) findSiteName() {
 func (mf *MetaFinder) findImage() {
 	ogImage := mf.doc.Find(`meta[property="og:image"]`)
 
-	if ogImage == nil {
-		return
-	}
-
 	val, exists := ogImage.Attr("content")
 
 	if !exists {
@@ -108,10 +98,6 @@ func (mf *MetaFinder) findImage() {
 
 func (mf *MetaFinder) findType() {
 	ogType := mf.doc.Find(`meta[property="og:type"]`)
-
-	if ogType == nil {
-		return
-	}
 
 	val, exists := ogType.Attr("content")
 

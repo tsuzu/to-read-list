@@ -59,7 +59,7 @@ func (mf *MetaFinder) findTitle() {
 		val, exists := ogTitle.Attr("content")
 
 		if exists {
-			mf.meta.Title = val
+			mf.meta.Title = spaces.ReplaceAllString(val, " ")
 
 			return
 		}
@@ -71,7 +71,7 @@ func (mf *MetaFinder) findTitle() {
 		return
 	}
 
-	mf.meta.Title = titleNode.Text()
+	mf.meta.Title = spaces.ReplaceAllString(titleNode.Text(), " ")
 }
 
 func (mf *MetaFinder) findSiteName() {

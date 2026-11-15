@@ -1,16 +1,16 @@
 module github.com/tsuzu/to-read-list
 
-go 1.19
+go 1.23.0
 
 require (
 	github.com/PuerkitoBio/goquery v1.8.0
+	github.com/bradleyfalzon/ghinstallation/v2 v2.1.0
 	github.com/google/go-github/v48 v48.1.0
-	golang.org/x/oauth2 v0.2.0
+	golang.org/x/oauth2 v0.27.0
 )
 
 require (
 	github.com/andybalholm/cascadia v1.3.1 // indirect
-	github.com/bradleyfalzon/ghinstallation/v2 v2.1.0 // indirect
 	github.com/golang-jwt/jwt/v4 v4.4.1 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v45 v45.2.0 // indirect
